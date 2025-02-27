@@ -1,0 +1,114 @@
+#############################################
+#              KoyaGPS Config               #
+#   Developed With 💗 By Koya Development   #
+#############################################
+
+#--------------------------------------
+#         Global Settings
+#--------------------------------------
+
+# GPS Item Configuration
+# When a player right-clicks this item, the GPS menu opens.
+# Command to get the item: /gps give (player)
+Item:
+  Name: "&8(&b&lGPS&8)"  # Display name of the GPS item
+  Item: COMPASS          # Item type
+
+# Fast Travel Configuration
+FastTravel:
+  Enable: true        # Enable/disable fast travel
+  Vault: true         # Requires Vault for economy-based travel costs
+
+# GUI Configuration
+GUI:
+  Title: "&8KoyaGPS" # Title of the GPS GUI
+  Size: 6            # Number of rows in the GUI (each row has 9 slots)
+
+
+#--------------------------------------
+#         Path Finding Settings
+#--------------------------------------
+
+# Various options for navigation and display
+Bossbar: true    # Show a boss bar with navigation info
+Actionbar: true  # Show navigation updates in the action bar
+ArrowGuide: true # Enable the arrow path guide
+ArrowVisibleToOtherPlayers: true  # If true, all players can see the arrows
+
+
+#--------------------------------------
+#          Arrow Settings
+#--------------------------------------
+
+ArrowChain:
+  # Configuration for arrow styles
+  # List of available materials:
+  # https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Material.html
+
+  DefaultStyle: "clean" # Default arrow style
+
+  Styles:
+    clean:
+      PathBlocks: QUARTZ_BLOCK
+      ArrowHeadBlock: QUARTZ_BLOCK
+
+    modern:
+      PathBlocks: WHITE_CONCRETE
+      ArrowHeadBlock: WHITE_CONCRETE
+
+    elegant:
+      PathBlocks: SMOOTH_QUARTZ
+      ArrowHeadBlock: SMOOTH_QUARTZ
+
+    frost:
+      PathBlocks: PACKED_ICE
+      ArrowHeadBlock: BLUE_ICE
+
+    shadow:
+      PathBlocks: BLACK_CONCRETE
+      ArrowHeadBlock: BLACK_CONCRETE
+
+    golden:
+      PathBlocks: GOLD_BLOCK
+      ArrowHeadBlock: GOLD_BLOCK
+
+    crystal:
+      PathBlocks: GLASS
+      ArrowHeadBlock: GLASS
+
+    ancient:
+      PathBlocks: SMOOTH_STONE
+      ArrowHeadBlock: SMOOTH_STONE
+
+#--------------------------------------
+#        Arrow Chain Curve Settings
+#--------------------------------------
+
+# Enable/disable curve model for arrow chains
+CurveModel: false
+
+ArrowChainCurve:
+  # Number of arrows in the chain (default: 8)
+  Length: 8
+
+  # Default style for curved arrow chains
+  DefaultStyle: "default"
+
+  # Arrow styles for curved chains
+  Styles:
+    default:
+      PathBlocks: "QUARTZ_BLOCK"
+      DestinationBlock: "GOLD_BLOCK"
+
+    rainbow:
+      PathBlocks: ["RED_CONCRETE", "ORANGE_CONCRETE", "YELLOW_CONCRETE", "LIME_CONCRETE", "LIGHT_BLUE_CONCRETE", "BLUE_CONCRETE", "PURPLE_CONCRETE"]
+      DestinationBlock: "DIAMOND_BLOCK"
+
+    elegant:
+      PathBlocks: "QUARTZ_BLOCK"
+      DestinationBlock: "EMERALD_BLOCK"
+
+    nether:
+      PathBlocks: "CRIMSON_NYLIUM"
+      DestinationBlock: "ANCIENT_DEBRIS"
+

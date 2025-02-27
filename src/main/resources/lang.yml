@@ -1,0 +1,104 @@
+prefix: "&8[&9KoyaGPS&8] &9» &7"
+
+# permission denial
+no_permission: "&7You Don't Have Permission To Use This Command."
+
+# Help messages for GPS commands
+gps_help_title: "&7GPS Command Help:"
+gps_help_add: "&7/GPS &9Add &7<Name> &8- &9Add A New GPS Location."
+gps_help_delete: "&7/GPS &9Delete &7<Name> &8- &9Delete An Existing GPS Location."
+gps_help_set_icon: "&7/GPS &9SetIcon &7<Name> &8- &9Set The Icon For A GPS Location."
+gps_help_fast_travel: "&7/GPS &9FastTravel &7<Enable/Disable> <Name> &8- &9Enable Or Disable Fast Travel."
+gps_help_fast_travel_cost: "&7/GPS &9FastTravelCost &7<Name> <Amount> &8- &9Set Cost For Fast Travel."
+gps_help_give: "&7/GPS &9Give &7<Player> &8- &9Give A GPS Item To A Player."
+gps_help_reload: "&7/GPS &9Reload &8- &9Reload The Plugin Configuration."
+gps_help_forceOpen: "&7/GPS &9forceOpen &7<Player> &8- &9Opens The GPS GUI For The Target Player."
+gps_help_forceTrack: "&7/GPS &9forceTrack &7<Name> <Player> &8- &9Track Location For The Target Player."
+gps_help_forceEnd: "&7/GPS &9forceEnd &7<Player> &8- &9Stop Tracking Location For The Target Player."
+gps_help_style: "&7/GPS &9Style &7<Style> &8- &9Change The Arrow Style."
+
+# General plugin messages
+plugin_reloaded: "&aPlugin Has Been Reloaded Successfully."
+
+# deleting GPS locations
+gps_delete_usage: "&7Usage: /GPS Delete <Name>"
+location_not_exist: "&7This Location Does Not Exist."
+location_deleted: "&dLocation &7{Name} &dHas Been Deleted."
+
+# setting an icon for GPS locations
+gps_set_icon_usage: "&7Usage: /GPS SetIcon <Name>"
+no_item_in_hand: "&7You Must Be Holding An Item To Set As An Icon."
+icon_changed: "&aIcon Has Been Changed Successfully."
+
+# adding GPS locations
+gps_add_usage: "&7Usage: /GPS Add <Name>"
+location_exists: "&cA Location With This Name Already Exists."
+location_added: "&7Location &d{Name} &7Was Added At &d(X: {X}, Y: {Y}, Z: {Z})."
+
+# fast travel settings
+gps_fast_travel_usage: "&7Usage: /GPS FastTravel <Enable/Disable> <Name>"
+fast_travel_status: "&7Fast Travel For &d{Name} &7Has Been &7{Status}&d."
+enabled: "&aEnabled"
+disabled: "&cDisabled"
+
+# fast travel cost settings
+gps_fast_travel_cost_usage: "&7Usage: /GPS FastTravelCost <Name> <Amount>"
+invalid_cost: "&7Invalid Cost Value. Please Enter A Number."
+fast_travel_cost_updated: "&7Fast Travel Cost For &d{Name} &7Has Been Set To &d{Cost} &7Coins."
+fast_travel_cost_updated_dynamic: "&7Fast Travel Cost For &d{Name} &7Has Been Set To &d{Multiplier} &7coins Per Block."
+
+# giving GPS items
+gps_give_usage: "&7Usage: /GPS Give <Player>"
+player_not_found: "&7Player Not Found."
+gps_received: "&7You Have Received A GPS Item."
+gps_given: "&7You Have Given A GPS Item To &d{Player}."
+
+# invalid configuration
+invalid_material_in_config: "&cInvalid Material Specified In Config For GPS Item."
+
+# GPS styles
+gps_style_list_header: "&7Available Arrow Styles:"
+gps_style_list_format: "&7- &d{Style}"
+gps_style_invalid: "&7Invalid Style! Use /gps style To See Available Styles."
+gps_style_changed: "&7Arrow Style Set To: {Style}"
+
+# fast travel
+fasttravel_cost: "&7Fast Travel Will Cost &6{Cost} Coins&7."
+fasttravel_insufficient_funds: "&7You Need &6{Cost} Coins&7 To Fast Travel Here! You Only Have &6{Balance} Coins&7."
+fasttravel_cost_bypass: "&aFast Travel Cost Bypassed With Permission."
+fasttravel_success: "&7You Have Been Charged &d{Cost} &7Coins For Fast Travel."
+fast_travel_started: "&7Fast Travel Has Started For &d{Name} &7At &d(X:{X} Y:{Y} Z:{Z})"
+
+# force opening GPS GUI
+gps_forceOpen_success: "&7Forced Player To Open The GPS GUI Successfully."
+gps_forceOpen_playerNotFound: "&7Player Not Found, Or Is Not Online."
+gps_forceOpen_usage: "&7Usage: /GPS forceOpen <Player>"
+
+# force tracking GPS
+gps_forceTrack_success: "&7Forced Player To Track Location Successfully."
+gps_forceTrack_playerNotFound: "&7Player Not Found, Or Is Not Online."
+gps_forceTrack_usage: "&7Usage: /GPS forceTrack <Name> <Player>"
+
+# force end GPS
+gps_forceEnd_success: "&7Ended Player Location Tracking Successfully."
+gps_forceEnd_playerNotFound: "&7Player Not Found, Or Is Not Online."
+gps_forceEnd_usage: "&7Usage: /GPS forceEnd <Player>"
+
+# GUI messages
+location_message: "&8» &7Location: &7(X:{X} Y:{Y} Z:{Z})"
+distance_message: "&8» &7Distance: &d{Distance} &7Blocks"
+left_click_to_track: "&8» &7Left-Click To Track"
+right_click_to_fast_travel: "&8» &7Right-Click To Fast Travel"
+fast_travel_cost: "   &8➥ &7Cost: &d${Cost}"
+stop_button_name: "&7&lStop"
+previous_button_name: "&7Previous"
+next_button_name: "&dNext"
+gps_started: "&7GPS Has Started For &d{Name} &7At &d(X:{X} Y:{Y} Z:{Z})"
+follow_compass: "&7Follow Your Compass To Reach The Destination!"
+insufficient_funds: "&7You Don't Have Enough Money"
+
+# Bossbar messages
+bossbar_title: "&8[&b{Distance}&8] &7Blocks Left To Reach Destination"
+
+# Actionbar messages
+actionbar: "&8[&b{Distance}&8] &7Blocks Left"

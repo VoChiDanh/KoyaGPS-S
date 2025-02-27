@@ -1,0 +1,29 @@
+name: KoyaGPS
+version: '${project.version}'
+main: ir.alireza009.koyaGPS.KoyaGPS
+api-version: '1.13'
+prefix: Koya
+authors: [ Alireza009 ]
+website: alireza009.ir
+
+commands:
+  gps:
+    description: Access GPS commands
+    permission: gps.admin
+    subcommands:
+      add:
+        description: Add a new GPS location
+      seticon:
+        description: Set an icon for a GPS location
+      fasttravel:
+        description: Enable or disable fast travel for a GPS location
+      reload:
+        description: Reload the plugin
+
+permissions:
+  gps.admin:
+    description: Allows access to all GPS commands
+    default: op
+  gps.style.*:
+    description: Allows access to all GPS styles
+    default: op
