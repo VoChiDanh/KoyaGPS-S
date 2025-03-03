@@ -81,7 +81,7 @@ public class GpsGui {
             String cost = KoyaGPS.getLocationFileManager().getConfig().getString("Locations." + id + ".FastTravelCost");
             double fastTravelCost = 0;
             if (cost.startsWith("%distance*")) {
-                int perBlockCost = Integer.parseInt(cost.replace("%distance*", "").replace("%", ""));
+                double perBlockCost = Double.parseDouble(cost.replace("%distance*", "").replace("%", ""));
                 fastTravelCost = (perBlockCost * distance);
             } else {
                 fastTravelCost = Double.parseDouble(cost);
