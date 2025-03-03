@@ -79,12 +79,12 @@ public class GpsGui {
             String icon = KoyaGPS.getLocationFileManager().getConfig().getString("Locations." + id + ".Icon", "COMPASS");
             int distance = (int) player.getLocation().distance(location);
             String cost = KoyaGPS.getLocationFileManager().getConfig().getString("Locations." + id + ".FastTravelCost");
-            int fastTravelCost = 0;
+            double fastTravelCost = 0;
             if (cost.startsWith("%distance*")) {
                 int perBlockCost = Integer.parseInt(cost.replace("%distance*", "").replace("%", ""));
                 fastTravelCost = (perBlockCost * distance);
             } else {
-                fastTravelCost = Integer.parseInt(cost);
+                fastTravelCost = Double.parseDouble(cost);
             }
 
             Boolean fastTravel = KoyaGPS.getLocationFileManager().getConfig().getBoolean("Locations." + id + ".FastTravel", true);
@@ -112,7 +112,7 @@ public class GpsGui {
                 }
             }
 
-            int finalFastTravelCost = fastTravelCost;
+            double finalFastTravelCost = fastTravelCost;
             GuiItem item = ItemBuilder.from(Material.valueOf(icon))
                     .setName(Utils.colorizeWithoutPrefix("&6&l" + name))
                     .setLore(loresList)
