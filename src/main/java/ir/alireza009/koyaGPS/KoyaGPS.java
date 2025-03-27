@@ -61,14 +61,12 @@ public final class KoyaGPS extends JavaPlugin {
 
         int pluginId = 24717;
         Metrics metrics = new Metrics(this, pluginId);
-        Metrics.CustomChart chart = new Metrics.CustomChart("CurveModel") {
-            @Override
-            protected Metrics.JsonObjectBuilder.JsonObject getChartData() throws Exception {
-                return null;
-            }
-        };
-
-        metrics.addCustomChart(chart);
+        metrics.addCustomChart(new Metrics.SimplePie("CurveModel", () -> getConfig().get("CurveModel", true).toString()));
+        metrics.addCustomChart(new Metrics.SimplePie("Bossbar", () -> getConfig().get("Bossbar", true).toString()));
+        metrics.addCustomChart(new Metrics.SimplePie("Actionbar", () -> getConfig().get("Actionbar", true).toString()));
+        metrics.addCustomChart(new Metrics.SimplePie("ArrowGuide", () -> getConfig().get("ArrowGuide", true).toString()));
+        metrics.addCustomChart(new Metrics.SimplePie("ArrowVisibleToOtherPlayers", () -> getConfig().get("ArrowVisibleToOtherPlayers", true).toString()));
+        metrics.addCustomChart(new Metrics.SimplePie("ServerName", () -> getConfig().get("ServerName", "").toString()));
     }
 
     @Override
