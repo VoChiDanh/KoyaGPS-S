@@ -36,7 +36,6 @@ public class GpsGui {
                 .setName(ChatColor.translateAlternateColorCodes('&', LangUtils.getMessage("stop_button_name")))
                 .asGuiItem(event1 -> {
                     paginatedGUI.disableAllInteractions();
-                    //if (KoyaGPS.getGPS() != null) KoyaGPS.getGPS().stopGPS(player);
                     Storage.getPlayers().remove(player.getUniqueId());
                     paginatedGUI.close(player);
                     player.playSound(player, Sound.BLOCK_ANVIL_DESTROY, 10, 29);
@@ -77,11 +76,11 @@ public class GpsGui {
             if (!location.getWorld().toString().equalsIgnoreCase(player.getLocation().getWorld().toString())) continue;
             String name = KoyaGPS.getLocationFileManager().getConfig().getString("Locations." + id + ".Name", "NULL");
             String icon = KoyaGPS.getLocationFileManager().getConfig().getString("Locations." + id + ".Icon", "COMPASS");
-            int distance = (int) player.getLocation().distance(location);
-            String cost = KoyaGPS.getLocationFileManager().getConfig().getString("Locations." + id + ".FastTravelCost");
-            double fastTravelCost = 0;
+            double distance = player.getLocation().distance(location);
+            String cost = KoyaGPS.getLocationFileManager().getConfig().getString("Locations." + id + ".FastTravelCost", "1");
+            double fastTravelCost = 0.0;
             if (cost.startsWith("%distance*")) {
-                int perBlockCost = Integer.parseInt(cost.replace("%distance*", "").replace("%", ""));
+                double perBlockCost = Double.parseDouble(cost.replace("%distance*", "").replace("%", ""));
                 fastTravelCost = (perBlockCost * distance);
             } else {
                 fastTravelCost = Double.parseDouble(cost);

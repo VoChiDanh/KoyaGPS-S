@@ -13,6 +13,8 @@ import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.util.concurrent.Callable;
+
 public final class KoyaGPS extends JavaPlugin {
     private static Economy economy = null;
     public static Economy getEconomy() {
@@ -59,6 +61,14 @@ public final class KoyaGPS extends JavaPlugin {
 
         int pluginId = 24717;
         Metrics metrics = new Metrics(this, pluginId);
+        Metrics.CustomChart chart = new Metrics.CustomChart("CurveModel") {
+            @Override
+            protected Metrics.JsonObjectBuilder.JsonObject getChartData() throws Exception {
+                return null;
+            }
+        };
+
+        metrics.addCustomChart(chart);
     }
 
     @Override

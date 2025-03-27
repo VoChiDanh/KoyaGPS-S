@@ -133,9 +133,6 @@ public class GPSCommand implements CommandExecutor {
             Storage.getPlayers().put(PlayerObj.getUniqueId(), location);
             PlayersTask.startDestination(PlayerObj);
 
-
-            //if (KoyaGPS.getGPS() != null) KoyaGPS.getGPS().startCompass(player, location);
-
             PlayerObj.playSound(PlayerObj, Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 1, 1);
             PlayerObj.sendMessage(Utils.colorize(
                     LangUtils.getMessage("gps_started")
