@@ -66,7 +66,6 @@ public final class KoyaGPS extends JavaPlugin {
         metrics.addCustomChart(new Metrics.SimplePie("Actionbar", () -> getConfig().get("Actionbar", true).toString()));
         metrics.addCustomChart(new Metrics.SimplePie("ArrowGuide", () -> getConfig().get("ArrowGuide", true).toString()));
         metrics.addCustomChart(new Metrics.SimplePie("ArrowVisibleToOtherPlayers", () -> getConfig().get("ArrowVisibleToOtherPlayers", true).toString()));
-        metrics.addCustomChart(new Metrics.SimplePie("ServerName", () -> getConfig().get("ServerName", "").toString()));
     }
 
     @Override

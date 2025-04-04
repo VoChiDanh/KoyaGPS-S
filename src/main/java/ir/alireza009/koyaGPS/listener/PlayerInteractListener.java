@@ -18,19 +18,39 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.inventory.ItemStack;
 
 public class PlayerInteractListener implements Listener {
 
     @EventHandler
-    public void OnPlayerUse(PlayerInteractEvent event) {
+    public void onPlayerInteract(PlayerInteractEvent event) {
         Player player = event.getPlayer();
-        if (event.getAction() == Action.LEFT_CLICK_BLOCK) return;
-        if (event.getAction() == Action.LEFT_CLICK_AIR) return;
-        if (event.getAction() == Action.PHYSICAL) return;
-        String materialName = KoyaGPS.getInstance().getConfig().getString("GPS.Item.Material", "COMPASS");
-        Material material = Material.matchMaterial(materialName);
-        if (event.getPlayer().getInventory().getItemInMainHand().getType() == material) {
-            GpsGui.open(player);
+
+        if (event.getAction() == Action.LEFT_CLICK_BLOCK ||
+                event.getAction() == Action.LEFT_CLICK_AIR ||
+                event.getAction() == Action.PHYSICAL) {
+            return;
         }
+
+        String materialName = KoyaGPS.getInstance().getConfig().getString("Item.Item", "COMPASS");
+        String itemName = KoyaGPS.getInstance().getConfig().getString("Item.Name", "COMPASS");
+
+        Material material = Material.matchMaterial(materialName);
+        if (material == null) return;
+
+        ItemStack item = player.getInventory().getItemInMainHand();
+        if (item.getType() != material) return;
+
+        if (item.hasItemMeta() && item.getItemMeta().hasDisplayName()) {
+            String displayName = item.getItemMeta().getDisplayName();
+            if (!displayName.equals(ChatColor.translateAlternateColorCodes('&', itemName))) {
+                return;
+            }
+        } else {
+            return;
+        }
+
+        GpsGui.open(player);
     }
+
 }

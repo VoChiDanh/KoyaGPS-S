@@ -15,6 +15,7 @@ gps_help_reload: "&7/GPS &9Reload &8- &9Reload The Plugin Configuration."
 gps_help_forceOpen: "&7/GPS &9forceOpen &7<Player> &8- &9Opens The GPS GUI For The Target Player."
 gps_help_forceTrack: "&7/GPS &9forceTrack &7<Name> <Player> &8- &9Track Location For The Target Player."
 gps_help_forceEnd: "&7/GPS &9forceEnd &7<Player> &8- &9Stop Tracking Location For The Target Player."
+gps_help_forceFastTravel: "&7/GPS &9forceFastTravel &7<Name> <Player> &8- &9Fast Travel Location For The Target Player."
 gps_help_style: "&7/GPS &9Style &7<Style> &8- &9Change The Arrow Style."
 
 # General plugin messages
@@ -78,6 +79,11 @@ gps_forceOpen_usage: "&7Usage: /GPS forceOpen <Player>"
 gps_forceTrack_success: "&7Forced Player To Track Location Successfully."
 gps_forceTrack_playerNotFound: "&7Player Not Found, Or Is Not Online."
 gps_forceTrack_usage: "&7Usage: /GPS forceTrack <Name> <Player>"
+
+# force tracking GPS
+gps_forceFastTravel_success: "&7Forced Player To Fast Travel Location Successfully."
+gps_forceFastTravel_playerNotFound: "&7Player Not Found, Or Is Not Online."
+gps_forceFastTravel_usage: "&7Usage: /GPS forceFastTravel <Name> <Player>"
 
 # force end GPS
 gps_forceEnd_success: "&7Ended Player Location Tracking Successfully."

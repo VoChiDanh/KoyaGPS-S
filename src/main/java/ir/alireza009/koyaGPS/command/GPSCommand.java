@@ -3,6 +3,7 @@ package ir.alireza009.koyaGPS.command;
 import ir.alireza009.koyaGPS.KoyaGPS;
 import ir.alireza009.koyaGPS.gui.GpsGui;
 import ir.alireza009.koyaGPS.storage.Storage;
+import ir.alireza009.koyaGPS.task.FastTravelTask;
 import ir.alireza009.koyaGPS.task.PlayersTask;
 import ir.alireza009.koyaGPS.utils.Utils;
 import ir.alireza009.koyaGPS.utils.LangUtils;
@@ -33,6 +34,7 @@ public class GPSCommand implements CommandExecutor {
             player.sendMessage(LangUtils.getMessage("gps_help_forceOpen"));
             player.sendMessage(LangUtils.getMessage("gps_help_forceTrack"));
             player.sendMessage(LangUtils.getMessage("gps_help_forceEnd"));
+            player.sendMessage(LangUtils.getMessage("gps_help_forceFastTravel"));
             player.sendMessage(LangUtils.getMessage("gps_help_give"));
             player.sendMessage(LangUtils.getMessage("gps_help_reload"));
             return false;
@@ -97,6 +99,40 @@ public class GPSCommand implements CommandExecutor {
             KoyaGPS.getLangFileManager().reloadConfig();
             KoyaGPS.getInstance().reloadConfig();
             player.sendMessage(Utils.colorize(LangUtils.getMessage("plugin_reloaded")));
+            return false;
+        }
+
+        if (args[0].equalsIgnoreCase("forceFastTravel")) {
+            if (!sender.hasPermission("gps.admin")) {
+                sender.sendMessage(Utils.colorize(LangUtils.getMessage("no_permission")));
+                return false;
+            }
+            if (args.length < 3) {
+                sender.sendMessage(Utils.colorize(LangUtils.getMessage("gps_forceFastTravel_usage")));
+                return false;
+            }
+
+            String id = args[1];
+
+            if (KoyaGPS.getLocationFileManager().getConfig().get("Locations." + id) == null) {
+                sender.sendMessage(Utils.colorize(LangUtils.getMessage("location_not_exist")));
+                return false;
+            }
+
+            String target = args[2];
+
+            if (Bukkit.getPlayer(target) == null) {
+                sender.sendMessage(Utils.colorize(LangUtils.getMessage("gps_forceFastTravel_playerNotFound")));
+                return false;
+            }
+
+            Player PlayerObj = Bukkit.getPlayer(target);
+            String locationId = KoyaGPS.getLocationFileManager().getConfig().getString("Locations." + id + ".Location");
+            String[] xyz = locationId.split("@");
+            Location location = new Location(Bukkit.getWorld(xyz[0]), Double.valueOf(xyz[1]), Double.valueOf(xyz[2]), Double.valueOf(xyz[3]));
+            FastTravelTask.startFastTravel(PlayerObj, location);
+
+            sender.sendMessage(Utils.colorize(LangUtils.getMessage("gps_forceFastTravel_success")));
             return false;
         }
 
@@ -412,8 +448,8 @@ public class GPSCommand implements CommandExecutor {
             }
 
             // Get the GPS item settings from the config
-            String itemName = KoyaGPS.getInstance().getConfig().getString("GPS.Item.Name", "&8(&b&lGPS&8)");
-            String materialName = KoyaGPS.getInstance().getConfig().getString("GPS.Item.Material", "COMPASS");
+            String itemName = KoyaGPS.getInstance().getConfig().getString("Item.Name", "&8(&b&lGPS&8)");
+            String materialName = KoyaGPS.getInstance().getConfig().getString("Item.Item", "COMPASS");
             Material material = Material.matchMaterial(materialName);
 
             if (material == null) {

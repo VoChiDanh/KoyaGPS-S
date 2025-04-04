@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class TabComplete implements TabCompleter {
-    private final List<String> arguments = Arrays.asList("Delete", "Add", "SetIcon", "FastTravel", "FastTravelCost", "Reload", "Give", "Style", "ForceOpen", "ForceTrack", "ForceEnd");
+    private final List<String> arguments = Arrays.asList("Delete", "Add", "SetIcon", "FastTravel", "FastTravelCost", "Reload", "Give", "Style", "ForceOpen", "ForceTrack", "ForceEnd", "ForceFastTravel");
     private final List<String> argumentsTwo = Arrays.asList("Disable", "Enable");
     private final List<String> gpsNames = new ArrayList<String>();
 
@@ -60,6 +60,7 @@ public class TabComplete implements TabCompleter {
             if (args[0].equalsIgnoreCase("Delete")) return gpsNames;
             if (args[0].equalsIgnoreCase("FastTravelCost")) return gpsNames;
             if (args[0].equalsIgnoreCase("ForceTrack")) return gpsNames;
+            if (args[0].equalsIgnoreCase("ForceFastTravel")) return gpsNames;
         }
 
         if (args.length == 3) {
