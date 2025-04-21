@@ -31,37 +31,39 @@ public class GpsGui {
                 .disableAllInteractions()
                 .create();
 
-        // Stop Button
-        paginatedGUI.setItem(size, 5, ItemBuilder.from(Material.CONDUIT)
-                .setName(ChatColor.translateAlternateColorCodes('&', LangUtils.getMessage("stop_button_name")))
-                .asGuiItem(event1 -> {
-                    paginatedGUI.disableAllInteractions();
-                    Storage.getPlayers().remove(player.getUniqueId());
-                    paginatedGUI.close(player);
-                    player.playSound(player, Sound.BLOCK_ANVIL_DESTROY, 10, 29);
-                }));
+        if (KoyaGPS.getInstance().getConfig().getBoolean("PaginationBar", true)) {
+            // Stop Button
+            paginatedGUI.setItem(size, 5, ItemBuilder.from(Material.CONDUIT)
+                    .setName(ChatColor.translateAlternateColorCodes('&', LangUtils.getMessage("stop_button_name")))
+                    .asGuiItem(event1 -> {
+                        paginatedGUI.disableAllInteractions();
+                        Storage.getPlayers().remove(player.getUniqueId());
+                        paginatedGUI.close(player);
+                        player.playSound(player, Sound.BLOCK_ANVIL_DESTROY, 10, 29);
+                    }));
 
-        // Border Glass
-        GuiItem glass = ItemBuilder.from(Material.GRAY_STAINED_GLASS_PANE)
-                .setName(ChatColor.translateAlternateColorCodes('&', "&7"))
-                .asGuiItem(event1 -> event1.setCancelled(true));
-        paginatedGUI.getFiller().fillBottom(glass);
+            // Border Glass
+            GuiItem glass = ItemBuilder.from(Material.GRAY_STAINED_GLASS_PANE)
+                    .setName(ChatColor.translateAlternateColorCodes('&', "&7"))
+                    .asGuiItem(event1 -> event1.setCancelled(true));
+            paginatedGUI.getFiller().fillBottom(glass);
 
-        // Previous Button
-        paginatedGUI.setItem(size, 3, ItemBuilder.from(Material.RED_STAINED_GLASS_PANE)
-                .setName(ChatColor.translateAlternateColorCodes('&', LangUtils.getMessage("previous_button_name")))
-                .asGuiItem(event1 -> {
-                    paginatedGUI.previous();
-                    paginatedGUI.disableAllInteractions();
-                }));
+            // Previous Button
+            paginatedGUI.setItem(size, 3, ItemBuilder.from(Material.RED_STAINED_GLASS_PANE)
+                    .setName(ChatColor.translateAlternateColorCodes('&', LangUtils.getMessage("previous_button_name")))
+                    .asGuiItem(event1 -> {
+                        paginatedGUI.previous();
+                        paginatedGUI.disableAllInteractions();
+                    }));
 
-        // Next Button
-        paginatedGUI.setItem(size, 7, ItemBuilder.from(Material.LIME_STAINED_GLASS_PANE)
-                .setName(ChatColor.translateAlternateColorCodes('&', LangUtils.getMessage("next_button_name")))
-                .asGuiItem(event1 -> {
-                    paginatedGUI.next();
-                    paginatedGUI.disableAllInteractions();
-                }));
+            // Next Button
+            paginatedGUI.setItem(size, 7, ItemBuilder.from(Material.LIME_STAINED_GLASS_PANE)
+                    .setName(ChatColor.translateAlternateColorCodes('&', LangUtils.getMessage("next_button_name")))
+                    .asGuiItem(event1 -> {
+                        paginatedGUI.next();
+                        paginatedGUI.disableAllInteractions();
+                    }));
+        }
 
         if (KoyaGPS.getLocationFileManager().getConfig().getConfigurationSection("Locations") == null) {
             paginatedGUI.open(player);

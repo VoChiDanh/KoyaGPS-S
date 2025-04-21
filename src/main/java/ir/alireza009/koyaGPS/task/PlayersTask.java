@@ -125,6 +125,12 @@ public class PlayersTask implements Listener {
                 }
 
                 Location playerLoc = player.getLocation();
+                if (!playerLoc.getWorld().getName().equalsIgnoreCase(destination.getWorld().getName())) {
+                    cleanup(player);
+                    cancel();
+                    return;
+                }
+
                 double distance = playerLoc.distance(destination);
 
                 if (distance < 3) {

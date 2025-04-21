@@ -7,6 +7,8 @@
 #         Global Settings
 #--------------------------------------
 
+PaginationBar: true
+
 # GPS Item Configuration
 # When a player right-clicks this item, the GPS menu opens.
 # Command to get the item: /gps give (player)
