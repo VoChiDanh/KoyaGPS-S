@@ -4,6 +4,7 @@ import ir.alireza009.koyaGPS.KoyaGPS;
 import ir.alireza009.koyaGPS.storage.Storage;
 import ir.alireza009.koyaGPS.task.PlayersTask;
 import org.bukkit.Bukkit;
+import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -24,6 +25,9 @@ public class PlayerJoinListener implements Listener {
             String[] xyz = id.split("@");
             Location location = new Location(Bukkit.getWorld(xyz[0]), Double.valueOf(xyz[1]), Double.valueOf(xyz[2]), Double.valueOf(xyz[3]));
             player.teleport(location);
+            player.setGameMode(GameMode.SURVIVAL);
+            KoyaGPS.getPlayersFileManager().getConfig().set("Locations." + player.getName(), null);
+            KoyaGPS.getPlayersFileManager().save();
         }
     }
 }

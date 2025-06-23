@@ -19,12 +19,14 @@ import java.util.List;
 public class FastTravelTask {
     private static final List<Integer> ASCEND_TIMES = Arrays.asList(40, 70, 100, 130, 160, 190);
     private static final List<Integer> DESCEND_TIMES = Arrays.asList(280, 300, 320, 340, 360, 380, 400, 420);
+    private static GameMode originalGameMode = GameMode.SURVIVAL;
     private static final int TELEPORT_DELAY = 220;
     private static final int END_TIME = 440;
 
     public static void startFastTravel(Player player, Location destination) {
         // Store original GameMode to restore it if something goes wrong
-        final GameMode originalGameMode = player.getGameMode();
+        Storage.getLocation().put(player.getUniqueId(), player.getLocation());
+        originalGameMode = player.getGameMode();
 
         // Start the teleport sequence
         player.setGameMode(GameMode.SPECTATOR);
@@ -79,7 +81,7 @@ public class FastTravelTask {
 
 
     private static void finalizeTeleport(Player player, Location finalLocation) {
-        player.setGameMode(GameMode.SURVIVAL);
+        player.setGameMode(originalGameMode);
         Storage.getLocation().remove(player.getUniqueId());
         KoyaGPS.getPlayersFileManager().getConfig().set("Locations." + player.getName(), null);
         KoyaGPS.getPlayersFileManager().save();
