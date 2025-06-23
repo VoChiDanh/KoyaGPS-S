@@ -5,17 +5,22 @@ import ir.alireza009.koyaGPS.gui.GpsGui;
 import ir.alireza009.koyaGPS.storage.Storage;
 import ir.alireza009.koyaGPS.task.FastTravelTask;
 import ir.alireza009.koyaGPS.task.PlayersTask;
-import ir.alireza009.koyaGPS.utils.Utils;
 import ir.alireza009.koyaGPS.utils.LangUtils;
-import org.bukkit.*;
-import org.bukkit.configuration.ConfigurationSection;
-import org.bukkit.entity.Player;
+import ir.alireza009.koyaGPS.utils.Utils;
+import org.bukkit.Bukkit;
+import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.jetbrains.annotations.NotNull;
+import org.bukkit.configuration.ConfigurationSection;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.jetbrains.annotations.NotNull;
+
+import java.util.Arrays;
 
 public class GPSCommand implements CommandExecutor {
     @Override
@@ -24,7 +29,7 @@ public class GPSCommand implements CommandExecutor {
 
         if (args.length < 1) {
             Player player = (Player) sender;
-            player.sendMessage(Utils.colorizeWithoutPrefix( "&8[&9KoyaGPS&8] &9» " + LangUtils.getMessage("gps_help_title")));
+            player.sendMessage(Utils.colorizeWithoutPrefix("&8[&9KoyaGPS&8] &9» " + LangUtils.getMessage("gps_help_title")));
             player.sendMessage(LangUtils.getMessage("gps_help_add"));
             player.sendMessage(LangUtils.getMessage("gps_help_delete"));
             player.sendMessage(LangUtils.getMessage("gps_help_style"));
@@ -164,7 +169,7 @@ public class GPSCommand implements CommandExecutor {
             String locationId = KoyaGPS.getLocationFileManager().getConfig().getString("Locations." + id + ".Location");
             String[] xyz = locationId.split("@");
             Location location = new Location(Bukkit.getWorld(xyz[0]), Double.valueOf(xyz[1]), Double.valueOf(xyz[2]), Double.valueOf(xyz[3]));
-            String name = KoyaGPS.getLocationFileManager().getConfig().getString("Locations." + id + ".Name", "NULL");
+            String name = Utils.colorize(KoyaGPS.getLocationFileManager().getConfig().getString("Locations." + id + ".Name", "NULL"));
             PlayerObj.setCompassTarget(location);
             Storage.getPlayers().put(PlayerObj.getUniqueId(), location);
             PlayersTask.startDestination(PlayerObj);
@@ -331,6 +336,31 @@ public class GPSCommand implements CommandExecutor {
                     .replace("{Y}", String.valueOf(location.getBlockY()))
                     .replace("{Z}", String.valueOf(location.getBlockZ()))
             ));
+            return false;
+        }
+
+        if (args[0].equalsIgnoreCase("SetName")) {
+            Player player = (Player) sender;
+            if (!player.hasPermission("gps.admin")) {
+                player.sendMessage(Utils.colorize(LangUtils.getMessage("no_permission")));
+                return false;
+            }
+            if (args.length < 2) {
+                player.sendMessage(Utils.colorize(LangUtils.getMessage("gps_set_name")));
+                return false;
+            }
+
+            String id = args[1].replace(" ", "-");
+
+            if (KoyaGPS.getLocationFileManager().getConfig().get("Locations." + id) != null) {
+                String displayName = String.join(" ", Arrays.asList(args).subList(2, args.length));
+                KoyaGPS.getLocationFileManager().getConfig().set("Locations." + id + ".Name", displayName);
+                KoyaGPS.getLocationFileManager().save();
+                player.sendMessage(Utils.colorize(LangUtils.getMessage("set_gps_name")
+                        .replace("{Name}", id)
+                        .replace("{DisplayName}", displayName)));
+                return false;
+            }
             return false;
         }
 

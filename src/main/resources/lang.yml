@@ -17,6 +17,10 @@ gps_help_forceTrack: "&7/GPS &9forceTrack &7<Name> <Player> &8- &9Track Location
 gps_help_forceEnd: "&7/GPS &9forceEnd &7<Player> &8- &9Stop Tracking Location For The Target Player."
 gps_help_forceFastTravel: "&7/GPS &9forceFastTravel &7<Name> <Player> &8- &9Fast Travel Location For The Target Player."
 gps_help_style: "&7/GPS &9Style &7<Style> &8- &9Change The Arrow Style."
+gps_set_name: "&7/GPS &9SetName &7<DisplayName> &8- &9Change the DisplayName of Location"
+
+# set displayName
+set_gps_name: "&7Location &b{Name}&7 Was Updated Name To {DisplayName}"
 
 # General plugin messages
 plugin_reloaded: "&aPlugin Has Been Reloaded Successfully."

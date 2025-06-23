@@ -14,7 +14,7 @@ public class Utils {
         return ChatColor.translateAlternateColorCodes('&', text);
     }
 
-    public static String formatNumber(int number) {
-        return new DecimalFormat("#,###").format(number);
+    public static String formatNumber(double number) {
+        return new DecimalFormat("#.##").format(number);
     }
 }

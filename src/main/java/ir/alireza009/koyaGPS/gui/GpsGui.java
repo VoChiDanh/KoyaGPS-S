@@ -76,7 +76,7 @@ public class GpsGui {
             String[] xyz = locationId.split("@");
             Location location = new Location(Bukkit.getWorld(xyz[0]), Double.valueOf(xyz[1]), Double.valueOf(xyz[2]), Double.valueOf(xyz[3]));
             if (!location.getWorld().toString().equalsIgnoreCase(player.getLocation().getWorld().toString())) continue;
-            String name = KoyaGPS.getLocationFileManager().getConfig().getString("Locations." + id + ".Name", "NULL");
+            String name = Utils.colorize(KoyaGPS.getLocationFileManager().getConfig().getString("Locations." + id + ".Name", "NULL"));
             String icon = KoyaGPS.getLocationFileManager().getConfig().getString("Locations." + id + ".Icon", "COMPASS");
             double distance = player.getLocation().distance(location);
             String cost = KoyaGPS.getLocationFileManager().getConfig().getString("Locations." + id + ".FastTravelCost", "1");
@@ -108,7 +108,7 @@ public class GpsGui {
                 loresList.add(Utils.colorizeWithoutPrefix(LangUtils.getMessage("right_click_to_fast_travel")));
                 if (fastTravelCost > 0) {
                     loresList.add(Utils.colorizeWithoutPrefix(LangUtils.getMessage("fast_travel_cost")
-                            .replace("{Cost}", String.valueOf(fastTravelCost))
+                            .replace("{Cost}", Utils.formatNumber(fastTravelCost))
                     ));
                 }
             }
@@ -124,22 +124,22 @@ public class GpsGui {
                             player.setCompassTarget(location);
                             Storage.getPlayers().put(player.getUniqueId(), location);
                             PlayersTask.startDestination(player);
-                            
 
-                        //if (KoyaGPS.getGPS() != null) KoyaGPS.getGPS().startCompass(player, location);
 
-                        player.playSound(player, Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 1, 1);
-                        player.sendMessage(Utils.colorize(
-                                LangUtils.getMessage("gps_started")
-                                        .replace("{Name}", name)
-                                        .replace("{X}", String.valueOf(location.getBlockX()))
-                                        .replace("{Y}", String.valueOf(location.getBlockY()))
-                                        .replace("{Z}", String.valueOf(location.getBlockZ()))
-                        ));
-                        player.sendMessage(Utils.colorizeWithoutPrefix(LangUtils.getMessage("follow_compass")));
+                            //if (KoyaGPS.getGPS() != null) KoyaGPS.getGPS().startCompass(player, location);
 
-                        paginatedGUI.close(player);
-                        return;
+                            player.playSound(player, Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 1, 1);
+                            player.sendMessage(Utils.colorize(
+                                    LangUtils.getMessage("gps_started")
+                                            .replace("{Name}", name)
+                                            .replace("{X}", String.valueOf(location.getBlockX()))
+                                            .replace("{Y}", String.valueOf(location.getBlockY()))
+                                            .replace("{Z}", String.valueOf(location.getBlockZ()))
+                            ));
+                            player.sendMessage(Utils.colorizeWithoutPrefix(LangUtils.getMessage("follow_compass")));
+
+                            paginatedGUI.close(player);
+                            return;
                         }
 
                         if (event1.isRightClick()) {

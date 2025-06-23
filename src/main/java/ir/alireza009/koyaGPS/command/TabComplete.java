@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class TabComplete implements TabCompleter {
-    private final List<String> arguments = Arrays.asList("Delete", "Add", "SetIcon", "FastTravel", "FastTravelCost", "Reload", "Give", "Style", "ForceOpen", "ForceTrack", "ForceEnd", "ForceFastTravel");
+    private final List<String> arguments = Arrays.asList("Delete", "Add", "SetIcon", "SetName", "FastTravel", "FastTravelCost", "Reload", "Give", "Style", "ForceOpen", "ForceTrack", "ForceEnd", "ForceFastTravel");
     private final List<String> argumentsTwo = Arrays.asList("Disable", "Enable");
     private final List<String> gpsNames = new ArrayList<String>();
 
@@ -56,6 +56,7 @@ public class TabComplete implements TabCompleter {
             }
             if (args[0].equalsIgnoreCase("FastTravel")) return argumentsTwo;
             if (args[0].equalsIgnoreCase("Add")) return List.of("<Name>");
+            if (args[0].equalsIgnoreCase("SetName")) return gpsNames;
             if (args[0].equalsIgnoreCase("SetIcon")) return gpsNames;
             if (args[0].equalsIgnoreCase("Delete")) return gpsNames;
             if (args[0].equalsIgnoreCase("FastTravelCost")) return gpsNames;
@@ -65,7 +66,8 @@ public class TabComplete implements TabCompleter {
 
         if (args.length == 3) {
             if (args[0].equalsIgnoreCase("FastTravel")) return gpsNames;
-            if (args[0].equalsIgnoreCase("FastTravelCost")) return List.of("<Cost>", "%distance*10%");;
+            if (args[0].equalsIgnoreCase("FastTravelCost")) return List.of("<Cost>", "%distance*10%");
+            if (args[0].equalsIgnoreCase("SetName")) return List.of("<New Name>", "&6&lNew Name");
         }
 
         return null;
